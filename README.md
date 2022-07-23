@@ -1,8 +1,8 @@
 # TopGunLab
-Proyecto final para Top Gun Lab, galería de imagen
+Proyecto final Top Gun Lab, galería de imagen.
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">{ImageGallery}</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
