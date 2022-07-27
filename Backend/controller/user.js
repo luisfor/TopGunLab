@@ -230,3 +230,34 @@ exports.update = (req, res) => {
   }
 };
 
+
+//listar todos los users
+exports.findAll = (req, res) => {
+  const { page, size } = req.query;
+
+  const { limit, offset } = getPagination(page, size);
+
+  User.findAndCountAll({
+    limit,
+    offset,
+    attributes: {
+      exclude: ['password']
+    },
+    include: [
+      {
+        model: status,
+        as: "status",
+      },
+    ],
+  })
+    .then((data) => {
+      const response = getPagingData(data, page, limit);
+      res.send(response);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Se Produjo un error mientra buscaba los users",
+      });
+    });
+};
