@@ -1,7 +1,7 @@
 "use strict";
 const jwt = require("jwt-simple");
 const moment = require("moment");
-const secret = "Operadora-Vial-de-Colombia-2020-token-generador";
+const secret = "Top-Gun-Labs-2022-token-generador";
 
 let payload;
 
@@ -31,8 +31,8 @@ exports.authenticated = function (req, res, next) {
     });
   }
 
-  //Adjuntar el trabajador
-  req.trabajador = payload;
+  //Adjuntar el user
+  req.user = payload;
 
   //continuar con el proceso en el controller
   next();

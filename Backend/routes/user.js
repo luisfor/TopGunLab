@@ -1,31 +1,31 @@
 module.exports = (app) => {
-  const areas = require("../controllers/area");
+  const user = require("../controller/user");
 
   let router = require("express").Router();
 
-  //crear nuevas areas
-  router.post("/", areas.save);
+  //crear nuevas user
+  router.post("/", user.save);
 
-  //listar todas la reas
-  router.get("/", areas.findAll);
+  //listar todos los user
+  router.get("/", user.findAll);
 
-  //buscar area por id
-  router.get("/:id", areas.findOne);
+  //buscar user por id
+  router.get("/:id", user.findOne);
 
-  //buscar por nombre de area
-  router.get("/search/:search", areas.findName);
+  //buscar por nombre del user
+  router.get("/search/:search", user.findName);
 
-  //actualizar un area por id y sus parametros
-  router.put("/:id", areas.update);
+  //actualizar un user por id y sus parametros
+  router.put("/:id", user.update);
 
-  //eliminar un area por id
-  router.delete("/:id", areas.delete);
+  //eliminar un user por id
+  router.delete("/:id", user.delete);
 
-  //Activate areas
-  router.put("/activate/:id", areas.activate);
+  //Activate user
+  router.put("/activate/:id", user.activate);
 
-  //Desactivate areas
-  router.put("/desactivate/:id", areas.deactivate);
+  //Desactivate user
+  router.put("/desactivate/:id", user.deactivate);
 
-  app.use("/api/areas", router);
+  app.use("/api/user", router);
 };
