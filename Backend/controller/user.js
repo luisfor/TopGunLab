@@ -261,3 +261,31 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
+
+// buscar user por id
+exports.findOne = (req, res) => {
+  const id = req.params.id;
+
+  User.findByPk(id, {
+    attributes: {
+      exclude: ['password']
+    },
+    include: [
+      {
+        model: status,
+        as: "status",
+      },
+    ],
+  })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Se Produjo un error mientras se buscaba el user",
+      });
+    });
+};
