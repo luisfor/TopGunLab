@@ -289,3 +289,54 @@ exports.findOne = (req, res) => {
       });
     });
 };
+
+
+// borrar user
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  User.destroy({
+      where: { iduser: id },
+  })
+      .then((num) => {
+          if (num == 1) {
+              res.send({
+                  message: "El user fue eliminado exitosamente!",
+              });
+          } else {
+              res.send({
+                  message: `No se puede eliminar el user con id = ${id}. Tal vez no se encontró el user!`,
+              });
+          }
+      })
+      .catch((err) => {
+          res.status(500).send({
+              message: "No se pudo eliminar el user con id = " + id,
+          });
+      });
+};
+
+// activar un user
+exports.activate = (req, res) => {
+  const id = req.params.id;
+
+  User.update(req.body, {
+    where: { iduser: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "El user fue activado exitosamente.",
+        });
+      } else {
+        res.send({
+          message: `No se puede activar el user con id = ${id}. ¡Tal vez no se encontró el user o los datos enviado estan vacío!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error al activar el user con el id=" + id,
+      });
+    });
+};
